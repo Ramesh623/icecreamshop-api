@@ -1,4 +1,3 @@
-const req = require("express/lib/request");
 const User = require("../models/User");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin} = require("./verifyToken");
 
@@ -53,7 +52,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async(req,res)=>{
 
 //GET ALL USER
 router.get("/", verifyTokenAndAdmin, async(req,res)=>{
-    const query = req.query.new
+    const query = req.query.new;
     try{
         const users = query 
         ? await User.find().sort({_id:-1}).limit(5) 
