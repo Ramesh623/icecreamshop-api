@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const cors = require('cors');
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin} = require("./verifyToken");
 
 const router = require("express").Router();
@@ -59,7 +60,7 @@ router.get("/find/:id", async(req,res)=>{
 
 
 //GET ALL PRODUCTS
-router.get("/", async(req,res)=>{
+router.get("/", cors(), async(req,res)=>{
     const qNew = req.query.new;
     const qCategory = req.query.category;
 
@@ -85,6 +86,7 @@ router.get("/", async(req,res)=>{
         res.status(500).json(err);
     }
 });
+
 
 module.exports = router;
 
